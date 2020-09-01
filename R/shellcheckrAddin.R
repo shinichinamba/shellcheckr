@@ -1,8 +1,13 @@
-# library(dplyr)
-# library(htmltools)
-# library(jsonlite)
-# library(magrittr)
-
+#' Run shellcheck on a document
+#'
+#' An function which parses shellcheck output into markers with ShellCheck wiki links.
+#' Intended for use as an RStudio Addin.
+#'
+#' @param path path of file to check. The active document is used if this is missing.
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#' @export
 shellcheckrAddin <- function(path) {
   if (missing(path)) {
     context <- rstudioapi::getActiveDocumentContext()
@@ -10,13 +15,13 @@ shellcheckrAddin <- function(path) {
   }
   result <- suppressWarnings(system2('shellcheck', c('-f', 'json1', path), stdout = TRUE))
   markers <- jsonlite::fromJSON(result)$comments %>%
-    transmute(type = level,
-              file = file,
-              line = line,
-              column = column,
-              message = HTML(as.character(
-                withTags(span(.data$message,
-                              a(href = paste0('https://www.shellcheck.net/wiki/SC', .data$code),
-                                paste0('SC', .data$code)))))))
+    dplyr::transmute(type = .data$level,
+                     file = .data$file,
+                     line = .data$line,
+                     column = .data$column,
+                     message = htmltools::HTML(as.character(htmltools::withTags(
+                       htmltools::span(.data$message,
+                                       htmltools::a(href = paste0('https://www.shellcheck.net/wiki/SC', .data$code),
+                                                    paste0('SC', .data$code)))))))
   rstudioapi::sourceMarkers('ShellCheck', markers, autoSelect = 'error')
 }
