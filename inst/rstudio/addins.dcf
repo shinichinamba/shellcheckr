@@ -1,0 +1,4 @@
+Name: ShellCheck
+Description: Run ShellCheck on the current document
+Binding: shellcheckrAddin
+Interactive: false
