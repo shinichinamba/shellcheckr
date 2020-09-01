@@ -20,4 +20,5 @@ Imports:
     htmltools,
     magrittr,
     rstudioapi,
-    rlang
+    rlang,
+    purrr

@@ -1,3 +1,9 @@
+markerMessage <- function(message, code) {
+    as.character(htmltools::span(message,
+                    htmltools::a(href = paste0('https://www.shellcheck.net/wiki/SC', code),
+                                 paste0('SC', code))))
+}
+
 #' Run `shellcheck` on a document and parse to markers
 #'
 #' Runs [`shellcheck`](https://www.shellcheck.net/) and parses output into markers with
@@ -16,10 +22,9 @@ shellcheckrMarkers <- function(path) {
                      file = .data$file,
                      line = .data$line,
                      column = .data$column,
-                     message = htmltools::HTML(as.character(htmltools::withTags(
-                       htmltools::span(.data$message,
-                                       htmltools::a(href = paste0('https://www.shellcheck.net/wiki/SC', .data$code),
-                                                    paste0('SC', .data$code)))))))
+                     message = purrr::map2(.data$message, .data$code, markerMessage) %>%
+                       unlist %>%
+                       structure(class = c('html', 'character')))
   rstudioapi::sourceMarkers('ShellCheck', markers, autoSelect = 'error')
 }
 
