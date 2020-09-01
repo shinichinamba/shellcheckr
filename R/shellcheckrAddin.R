@@ -1,7 +1,7 @@
-#' Run shellcheck on a document
+#' Run `shellcheck` on a document
 #'
-#' An function which parses shellcheck output into markers with ShellCheck wiki links.
-#' Intended for use as an RStudio Addin.
+#' A function which parses [`shellcheck`](https://www.shellcheck.net/) output into markers with [ShellCheck wiki](https://www.shellcheck.net/wiki/) links.
+#' Intended for use as an [RStudio Addin](https://rstudio.github.io/rstudioaddins/).
 #'
 #' @param path path of file to check. The active document is used if this is missing.
 #'
