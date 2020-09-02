@@ -28,8 +28,13 @@ install.packages("shellcheckr")
 ## Example
 
 Normally you would run `shellcheckr` from the *Addins-\>ShellCheck*
-toolbar menu item. The main menu *Tools-\>Modify Keyboard Shortcuts* can
-be used to make a shortcut for it. You can also call it manually:
+toolbar menu item:
+
+![Addin menu item](man/figures/addin-menu-item.png)
+![Markers](man/figures/markers.png)
+
+The main menu *Tools-\>Modify Keyboard Shortcuts* can be used to make a
+shortcut for it. You can also call it manually:
 
 ``` r
 library(shellcheckr)
