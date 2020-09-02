@@ -22,3 +22,5 @@ Imports:
     rstudioapi,
     rlang,
     purrr
+URL: https://github.com/sambrightman/shellcheckr
+BugReports: https://github.com/sambrightman/shellcheckr/issues
