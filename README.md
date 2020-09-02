@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build
+status](https://github.com/sambrightman/shellcheckr/workflows/R-CMD-check/badge.svg)](https://github.com/sambrightman/shellcheckr/actions)
 <!-- badges: end -->
 
 `shellcheckr` allows you to run
