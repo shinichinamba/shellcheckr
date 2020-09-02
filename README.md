@@ -12,7 +12,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 `shellcheckr` allows you to run
 [`shellcheck`](https://www.shellcheck.net/) manually or as an
 [addin](https://rstudio.github.io/rstudioaddins/) when editing shell
-script files in RStudio.
+scripts in RStudio.
 
 ## Installation
 
