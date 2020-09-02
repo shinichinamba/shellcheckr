@@ -4,6 +4,7 @@ markerMessage <- function(message, code) {
                                  paste0('SC', code))))
 }
 
+
 #' Run `shellcheck` on a document and parse to markers
 #'
 #' Runs [`shellcheck`](https://www.shellcheck.net/) and parses output into markers with
@@ -17,16 +18,20 @@ markerMessage <- function(message, code) {
 #' @importFrom rlang .data
 #' @export
 shellcheckrMarkers <- function(path) {
-  markers <- shellcheckr(path)$comments %>%
-    dplyr::transmute(type = .data$level,
-                     file = .data$file,
-                     line = .data$line,
-                     column = .data$column,
-                     message = purrr::map2(.data$message, .data$code, markerMessage) %>%
-                       unlist %>%
-                       structure(class = c('html', 'character')))
-  rstudioapi::sourceMarkers('ShellCheck', markers, autoSelect = 'error')
+  results <- shellcheckr(path)
+  if (length(results$comments) != 0) {
+    markers <- results$comments %>%
+      dplyr::transmute(type = .data$level,
+                       file = .data$file,
+                       line = .data$line,
+                       column = .data$column,
+                       message = purrr::map2(.data$message, .data$code, markerMessage) %>%
+                         unlist %>%
+                         structure(class = c('html', 'character')))
+    rstudioapi::sourceMarkers('ShellCheck', markers, autoSelect = 'error')
+  }
 }
+
 
 #' Run `shellcheck` on a document
 #'
