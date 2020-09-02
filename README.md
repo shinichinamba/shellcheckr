@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `shellcheckr`
+# shellcheckr
 
 <!-- badges: start -->
 
@@ -9,9 +9,9 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-shellcheckr allows you to run
+`shellcheckr` allows you to run
 [`shellcheck`](https://www.shellcheck.net/) manually or as an
-(addin)\[<https://rstudio.github.io/rstudioaddins/>\] when editing shell
+[addin](https://rstudio.github.io/rstudioaddins/) when editing shell
 script files in RStudio.
 
 ## Installation
