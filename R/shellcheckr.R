@@ -46,6 +46,10 @@ shellcheckr <- function(path) {
     path <- rstudioapi::getActiveDocumentContext()$path
     if (path == "") path <- rstudioapi::getSourceEditorContext()$path
   }
-  result <- suppressWarnings(system2('shellcheck', c('-f', 'json1', path), stdout = TRUE))
+  if (Sys.info()["sysname"] == "Windows") {
+    result <- suppressWarnings(shell(paste('shellcheck', '-f', 'json1', path, sep = " "), intern = TRUE))
+  } else {
+    result <- suppressWarnings(system2('shellcheck', c('-f', 'json1', path), stdout = TRUE))
+  }
   jsonlite::fromJSON(result)
 }
