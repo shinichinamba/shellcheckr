@@ -43,8 +43,8 @@ shellcheckrMarkers <- function(path) {
 #' @export
 shellcheckr <- function(path) {
   if (missing(path)) {
-    context <- rstudioapi::getActiveDocumentContext()
-    path <- context$path
+    path <- rstudioapi::getActiveDocumentContext()$path
+    if (path == "") path <- rstudioapi::getSourceEditorContext()$path
   }
   result <- suppressWarnings(system2('shellcheck', c('-f', 'json1', path), stdout = TRUE))
   jsonlite::fromJSON(result)
